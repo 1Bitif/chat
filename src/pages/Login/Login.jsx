@@ -1,19 +1,19 @@
 import { FacebookIcon, GithubIcon, LockIcon, MailIcon } from 'lucide-react';
 import { useState } from 'react';
-import {NavLink, useNavigate } from 'react-router-dom';
-import { auth , googleProvider} from '../../config/firebase';
-import { createUserWithEmailAndPassword , signInWithPopup , signOut } from 'firebase/auth';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { auth, googleProvider } from '../config/firebase';
+import { createUserWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa6";
 export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    
+
 
     const handleSubmit = async (e) => {
         // e.preventDefault();
-        try{
+        try {
             await createUserWithEmailAndPassword(auth, email, password)
             navigate('/')
         } catch (error) {
@@ -23,7 +23,7 @@ export const Login = () => {
     };
 
     const singInWithGoogle = async () => {
-        try{
+        try {
             await signInWithPopup(auth, googleProvider)
         } catch (error) {
             console.error(error)
@@ -31,7 +31,7 @@ export const Login = () => {
     }
 
     const handleLogOut = async () => {
-        try{
+        try {
             await signOut(auth)
         } catch (err) {
             console.error(err)
@@ -49,7 +49,7 @@ export const Login = () => {
                     </div>
                 </div>
                 <div className='flex px-4  text-white'>
-                    <h1 className='text-[65px] 2xl:text-[135px] pb-4'>Do Chat</h1>                   
+                    <h1 className='text-[65px] 2xl:text-[135px] pb-4'>Do Chat</h1>
                 </div>
                 {/* <img className='rounded-[60px]' src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif" alt="Login Illustration" /> */}
             </div>
@@ -60,7 +60,7 @@ export const Login = () => {
                         <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Welcome back</h2>
                         <p className="mt-2 text-sm text-gray-600">Please sign in to your account</p>
                     </div>
-                    <form className="mt-8 space-y-6"  onSubmit={handleSubmit} >
+                    <form className="mt-8 space-y-6" onSubmit={handleSubmit} >
                         <div className="rounded-md shadow-sm space-y-4">
                             <div>
                                 <label htmlFor="email-address" className="sr-only">
@@ -129,7 +129,7 @@ export const Login = () => {
                             </button>
                         </div>
                     </form>
-                    
+
                     <div className='mt-6'>
                         <div className='flex justify-center items-center'>
                             <p className='text-sm text-gray-500'>Don't have an account? </p>

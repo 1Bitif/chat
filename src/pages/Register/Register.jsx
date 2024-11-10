@@ -9,7 +9,7 @@ import { Avatar } from '@material-tailwind/react'
 
 export const Register = () => {
 
-    const [avatarSrc , setAvatarSrc] = useState("https://via.placeholder.com/150");
+    const [avatarSrc , setAvatarSrc] = useState("https://avatar.iran.liara.run/public/15");
     const fileInputRef = useRef(null)
 
 
