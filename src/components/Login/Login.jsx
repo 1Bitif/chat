@@ -154,7 +154,7 @@ export const Login = () => {
                                 className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                             >
                                 <span className="sr-only">Sign in with Google</span>
-                                <FcGoogle className="w-5 h-5" />  
+                                <GithubIcon className="w-5 h-5" />  
                             </button>
                             <button
                                 className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
