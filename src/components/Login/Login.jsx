@@ -1,17 +1,42 @@
 import { FacebookIcon, GithubIcon, LockIcon, MailIcon } from 'lucide-react';
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-
-
+import {useNavigate } from 'react-router-dom';
+import { auth , googleProvider} from '../../config/firebase';
+import { createUserWithEmailAndPassword , signInWithPopup , signOut } from 'firebase/auth';
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebook } from "react-icons/fa6";
 export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+    
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Handle login logic here
-        console.log('Login attempted with:', email, password);
+    const handleSubmit = async (e) => {
+        // e.preventDefault();
+        try{
+            await createUserWithEmailAndPassword(auth, email, password)
+            navigate('/')
+        } catch (error) {
+            console.error(error)
+        }
+
     };
+
+    const singInWithGoogle = async () => {
+        try{
+            await signInWithPopup(auth, googleProvider)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    const handleLogOut = async () => {
+        try{
+            await signOut(auth)
+        } catch (err) {
+            console.error(err)
+        }
+    }
 
     return (
         <div className='w-full flex flex-row bg-blue-50'>
@@ -35,7 +60,7 @@ export const Login = () => {
                         <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Welcome back</h2>
                         <p className="mt-2 text-sm text-gray-600">Please sign in to your account</p>
                     </div>
-                    <form className="mt-8 space-y-6" action="#" onClick={handleSubmit} method="POST">
+                    <form className="mt-8 space-y-6"  onSubmit={handleSubmit} >
                         <div className="rounded-md shadow-sm space-y-4">
                             <div>
                                 <label htmlFor="email-address" className="sr-only">
@@ -47,6 +72,7 @@ export const Login = () => {
                                         name="email"
                                         type="email"
                                         autoComplete="email"
+                                        onChange={(e) => setEmail(e.target.value)}
                                         required
                                         className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
                                         placeholder="Email address"
@@ -63,6 +89,7 @@ export const Login = () => {
                                         id="password"
                                         name="password"
                                         type="password"
+                                        onChange={(e) => setPassword(e.target.value)}
                                         autoComplete="current-password"
                                         required
                                         className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
@@ -87,7 +114,7 @@ export const Login = () => {
                             </div>
 
                             <div className="text-sm">
-                                <a href="#" className="font-medium text-primary hover:text-blue-500">
+                                <a href="#" className="font-medium text-primary">
                                     Forgot your password?
                                 </a>
                             </div>
@@ -99,6 +126,15 @@ export const Login = () => {
                                 className="group relative w-full flex justify-center py-2 px-4 border border-primary transition duration-200 ease-int text-sm font-medium rounded-md text-white bg-primary hover:bg-opacity-0 hover:text-primary  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                             >
                                 Sign in
+                            </button>
+                        </div>
+                        <div>
+                            <button
+                                type="button"
+                                onClick={handleLogOut}
+                                className="group relative w-full flex justify-center py-2 px-4 border border-primary transition duration-200 ease-int text-sm font-medium rounded-md text-white bg-primary hover:bg-opacity-0 hover:text-primary  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                            >
+                                Log out
                             </button>
                         </div>
                     </form>
@@ -114,16 +150,17 @@ export const Login = () => {
 
                         <div className="mt-6 grid grid-cols-2 gap-3">
                             <button
+                                onClick={singInWithGoogle}
                                 className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                             >
-                                <span className="sr-only">Sign in with GitHub</span>
-                                <GithubIcon className="w-5 h-5" />
+                                <span className="sr-only">Sign in with Google</span>
+                                <FcGoogle className="w-5 h-5" />  
                             </button>
                             <button
                                 className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                             >
                                 <span className="sr-only">Sign in with Facebook</span>
-                                <FacebookIcon className="w-5 h-5 " />
+                                <FaFacebook className='w-5 h-5 text-blue-600'/>
                             </button>
                         </div>
                     </div>
