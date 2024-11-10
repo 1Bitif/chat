@@ -1,10 +1,10 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { About } from './components/About/About';
+import { Login } from './pages/Login/Login';
+import { Register } from './pages/Register/Register';
 import { Home } from './pages/Home/Home';
 import { NoteFound } from './pages/NoteFound/NoteFound';
-import { Login } from './Login/Login';
-import { Register } from './pages/Register/Register';
 
 export const App = () => {
   return (

@@ -1,10 +1,10 @@
 import { FacebookIcon, GithubIcon, LockIcon, MailIcon } from 'lucide-react';
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { auth, googleProvider } from '../config/firebase';
 import { createUserWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa6";
+import { auth, googleProvider } from '../../config/firebase';
 export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
