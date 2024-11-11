@@ -12,6 +12,48 @@ export const Register = () => {
     const [avatarSrc , setAvatarSrc] = useState("https://avatar.iran.liara.run/public/15");
     const fileInputRef = useRef(null)
 
+    const [form , setForm] = useState({
+        firstName : "",
+        lastName : "",
+        email : "",
+        password : "",
+        confirmPassword : "",
+        phone : "",
+    });
+    const [errors , setErrors] = useState({});
+
+    const validate = () => {
+        let tempErrors = {}
+        if(!form.firstName) tempErrors.firstName = "First name is required"
+        if(!form.lastName) tempErrors.lastName = "Last name is required"
+        if (!form.email) {
+            tempErrors.email = "Email is required";
+          } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+            tempErrors.email = "Email is invalid";
+          }
+        if(!form.password) tempErrors.password = "Password is required"
+        if(!form.confirmPassword) tempErrors.confirmPassword = "Confirm password is required"
+        if(!form.phone) tempErrors.phone = "Phone is required"
+        
+        setErrors(tempErrors)
+        return Object.keys(tempErrors).length === 0
+
+    }
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if(validate()){
+            console.log("register" , form)
+        }
+    }
+
+    const handleChange = (e) => {
+        setForm({
+            ...form ,
+            [e.target.name] : e.target.value
+        })
+    }
 
     const handleClickAvatar = () => {
         fileInputRef.current.click();
@@ -34,8 +76,8 @@ export const Register = () => {
         <>
             <div className='w-full flex  bg-blue-50'>
                 {/* Image Login */}
-        <div className='lg:w-1/2 '>
-        <div className='lg:flex justify-center hidden items-center bg-primary rounded-r-[60px] fixed h-screen px-4'>
+        <div className=' w-0 lg:w-1/2 '>
+        <div className='lg:flex w-1/2 justify-center hidden items-center bg-primary rounded-r-[60px] fixed h-screen px-4'>
                     <div className='h-24 bg-white py-12 px-8 2xl:py-20 2xl:px-8 rounded-br-[25px] rounded-tr-[25px]  rounded-tl-[25px] 2xl:rounded-br-[50px] 2xl:rounded-tr-[50px]  2xl:rounded-tl-[50px]  '>
                         <div className='flex justify-center items-center h-1/2'>
                             <div className='bg-primary p-6 2xl:p-12 rounded-br-[12px] rounded-tr-[12px] rounded-tl-[12px] 2xl:rounded-br-[25px] 2xl:rounded-tr-[25px] 2xl:rounded-tl-[25px] '>
@@ -67,25 +109,24 @@ export const Register = () => {
                             onChange={handleImageChange}
                         />
                         </div>
-                        <form className="mt-8 space-y-6" onSubmit={"handleSubmit"} >
+                        <form className="mt-8 space-y-6" onSubmit={handleSubmit} >
                             <div className="rounded-md shadow-sm space-y-4">
                                 <div className='flex flex-row space-x-2'>
                                     <div>
-                                        <label htmlFor="fisrtName" className="sr-only">
+                                        <label htmlFor="firstName" className="sr-only">
                                             First Name
                                         </label>
                                         <div className="relative">
                                             <input
-                                                id="fisrtName"
-                                                name="fisrtName"
+                                                id="firstName"
+                                                name="firstName"
                                                 type="text"
-                                                // autoComplete="email"
-                                                // onChange={(e) => setEmail(e.target.value)}
-                                                required
+                                                onChange={handleChange}
                                                 className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none  focus:border-primary focus:z-10 sm:text-sm"
                                                 placeholder="First Name"
                                             />
-                                            {/* <MailIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" /> */}
+                                            {errors.firstName && <p className='text-red-600 text-xs pt-1'>{errors.firstName}</p>}
+                                            
                                         </div>
                                     </div>
                                     <div>
@@ -97,13 +138,12 @@ export const Register = () => {
                                                 id="lastName"
                                                 name="lastName"
                                                 type="TEXT"
-                                                // autoComplete="email"
-                                                // onChange={(e) => setEmail(e.target.value)}
-                                                required
+                                                onChange={handleChange}
+                                                
                                                 className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none  focus:border-primary focus:z-10 sm:text-sm"
                                                 placeholder="Last Name"
                                             />
-                                            {/* <MailIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" /> */}
+                                            {errors.lastName && <p className='text-red-600 text-xs pt-1'>{errors.lastName}</p>}
                                         </div>
                                     </div>
                                 </div>
@@ -116,13 +156,13 @@ export const Register = () => {
                                             id="email-address"
                                             name="email"
                                             type="email"
-                                            // autoComplete="email"
-                                            // onChange={(e) => setEmail(e.target.value)}
-                                            required
+                                            onChange={handleChange}
+                                            
                                             className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none  focus:border-primary focus:z-10 sm:text-sm"
                                             placeholder="Email address"
                                         />
                                         <MailIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                                        {errors.email && <p className='text-red-600 text-xs pt-1'>{errors.email}</p>}
                                     </div>
                                 </div>
                                 <div>
@@ -134,13 +174,13 @@ export const Register = () => {
                                             id="password"
                                             name="password"
                                             type="password"
-                                            // onChange={(e) => setPassword(e.target.value)}
-                                            // autoComplete="current-password"
-                                            required
+                                            onChange={handleChange}
+                                            
                                             className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none  focus:border-primary focus:z-10 sm:text-sm"
                                             placeholder="Password"
                                         />
                                         <LockIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                                        {errors.password && <p className='text-red-600 text-xs pt-1'>{errors.password}</p>}
                                     </div>
                                 </div>
                                 <div>
@@ -152,21 +192,22 @@ export const Register = () => {
                                             id="confirmPassword"
                                             name="confirmPassword"
                                             type="password"
-                                            // onChange={(e) => setPassword(e.target.value)}
-                                            // autoComplete="current-password"
-                                            required
+                                            onChange={handleChange}
+                                            
                                             className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none  focus:border-primary focus:z-10 sm:text-sm"
                                             placeholder="Confirm password"
                                         />
                                         <LockIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                                        {errors.confirmPassword && <p className='text-red-600 text-xs pt-1'>{errors.confirmPassword}</p>}
                                     </div>
                                 </div>
                                 <div>
                                         <PhoneInput
+                                            onchange={handleChange}
                                             placeholder="Enter phone number"
                                             country={country.toLowerCase()}
                                             value={phone}
-                                            onChange={setPhone}
+                                            // onChange={setPhone}
                                             inputProps={{
                                                 name: "phone",
                                                 required: true,
@@ -174,6 +215,7 @@ export const Register = () => {
                                             }}
                                             inputClass=" placeholder:text-blue-gray-300 focus:!border-primary !w-full" // Adjust input styles
                                         />
+                                         {errors.phone && <p className='text-red-600 text-xs pt-1'>{errors.phone}</p>}
                                 </div>
                             </div>
 
