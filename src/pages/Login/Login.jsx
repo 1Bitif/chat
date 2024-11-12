@@ -48,9 +48,9 @@ export const Login = () => {
                         </div>
                     </div>
                 </div>
-                <div className='flex px-4  text-white'>
+                {/* <div className='flex px-4  text-white'>
                     <h1 className='text-[65px] 2xl:text-[135px] pb-4'>Do Chat</h1>
-                </div>
+                </div> */}
                 {/* <img className='rounded-[60px]' src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif" alt="Login Illustration" /> */}
             </div>
             {/* Login Form */}
