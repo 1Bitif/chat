@@ -41,18 +41,20 @@ export const Login = () => {
     return (
         <div className='w-full flex flex-row bg-blue-50'>
             {/* Image Login */}
-            <div className='lg:flex justify-center hidden items-center bg-primary rounded-r-[60px] w-1/2 h-screen'>
-                <div className='h-24 bg-white py-12 px-8 2xl:py-24 2xl:px-16 rounded-br-[25px] rounded-tr-[25px]  rounded-tl-[25px] 2xl:rounded-br-[50px] 2xl:rounded-tr-[50px]  2xl:rounded-tl-[50px]  '>
-                    <div className='flex justify-center items-center h-1/2'>
-                        <div className='bg-primary p-6 2xl:p-12 rounded-br-[12px] rounded-tr-[12px] rounded-tl-[12px] 2xl:rounded-br-[25px] 2xl:rounded-tr-[25px] 2xl:rounded-tl-[25px] '>
+            <div className=' w-0 lg:w-1/2 '>
+        <div className='lg:flex w-1/2 justify-center hidden items-center bg-primary rounded-r-[60px] fixed h-screen px-4'>
+                    <div className='h-24 bg-white py-12 px-8 2xl:py-20 2xl:px-8 rounded-br-[25px] rounded-tr-[25px]  rounded-tl-[25px] 2xl:rounded-br-[50px] 2xl:rounded-tr-[50px]  2xl:rounded-tl-[50px]  '>
+                        <div className='flex justify-center items-center h-1/2'>
+                            <div className='bg-primary p-6 2xl:p-12 rounded-br-[12px] rounded-tr-[12px] rounded-tl-[12px] 2xl:rounded-br-[25px] 2xl:rounded-tr-[25px] 2xl:rounded-tl-[25px] '>
+                            </div>
                         </div>
                     </div>
+                    <div className='flex px-4  text-white'>
+                        <h1 className='text-[65px] 2xl:text-[135px] pb-4 font-bold'>o Chat</h1>
+                    </div>
+                    {/* <img className='rounded-[60px]' src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif" alt="Login Illustration" /> */}
                 </div>
-                <div className='flex px-4  text-white'>
-                    <h1 className='text-[65px] 2xl:text-[135px] pb-4'>Do Chat</h1>
-                </div>
-                {/* <img className='rounded-[60px]' src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif" alt="Login Illustration" /> */}
-            </div>
+        </div>
             {/* Login Form */}
             <div className="min-h-screen lg:w-1/2  w-full flex items-center justify-center p-4">
                 <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-2xl">
