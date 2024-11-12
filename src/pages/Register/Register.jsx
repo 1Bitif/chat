@@ -2,13 +2,15 @@ import { LockIcon, MailIcon, UserRoundPen } from 'lucide-react'
 import React, { useRef, useState } from 'react'
 import { FaFacebook } from 'react-icons/fa6'
 import { FcGoogle } from 'react-icons/fc'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css"; 
 import { Avatar } from '@material-tailwind/react'
+import {createUserWithEmailAndPassword , signInWithPopup} from "firebase/auth"
+import { auth, googleProvider } from '../../config/firebase'
 
 export const Register = () => {
-
+    const navigate = useNavigate();
     const [avatarSrc , setAvatarSrc] = useState("https://avatar.iran.liara.run/public/15");
     const fileInputRef = useRef(null)
 
@@ -41,10 +43,25 @@ export const Register = () => {
     }
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if(validate()){
+            try{
+                await createUserWithEmailAndPassword(auth , form.email , form.password)
+                navigate("/home")
+            } catch (err) {
+                console.error("sing with email and password is not working" , err)
+            }
             console.log("register" , form)
+        }
+    }
+
+    const SingWithGoogle = async () => {
+        try {
+            await signInWithPopup(auth , googleProvider)
+            navigate("/home")
+        } catch (err) {
+            console.error("sing with google not working ",err)
         }
     }
 
@@ -240,7 +257,7 @@ export const Register = () => {
 
                             <div className="mt-6 grid grid-cols-2 gap-3">
                                 <button
-                                    onClick={"singInWithGoogle"}
+                                    onClick={SingWithGoogle}
                                     className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                                 >
                                     <span className="sr-only">Sign in with Google</span>
