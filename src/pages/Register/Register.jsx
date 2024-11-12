@@ -4,39 +4,39 @@ import { FaFacebook } from 'react-icons/fa6'
 import { FcGoogle } from 'react-icons/fc'
 import { NavLink, useNavigate } from 'react-router-dom'
 import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css"; 
+import "react-phone-input-2/lib/style.css";
 import { Avatar } from '@material-tailwind/react'
-import {createUserWithEmailAndPassword , signInWithPopup} from "firebase/auth"
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth"
 import { auth, googleProvider } from '../../config/firebase'
 
 export const Register = () => {
     const navigate = useNavigate();
-    const [avatarSrc , setAvatarSrc] = useState("https://avatar.iran.liara.run/public/15");
+    const [avatarSrc, setAvatarSrc] = useState("https://avatar.iran.liara.run/public/15");
     const fileInputRef = useRef(null)
 
-    const [form , setForm] = useState({
-        firstName : "",
-        lastName : "",
-        email : "",
-        password : "",
-        confirmPassword : "",
-        phone : "",
+    const [form, setForm] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        // phone: "",
     });
-    const [errors , setErrors] = useState({});
+    const [errors, setErrors] = useState({});
 
     const validate = () => {
         let tempErrors = {}
-        if(!form.firstName) tempErrors.firstName = "First name is required"
-        if(!form.lastName) tempErrors.lastName = "Last name is required"
+        if (!form.firstName) tempErrors.firstName = "First name is required"
+        if (!form.lastName) tempErrors.lastName = "Last name is required"
         if (!form.email) {
             tempErrors.email = "Email is required";
-          } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+        } else if (!/\S+@\S+\.\S+/.test(form.email)) {
             tempErrors.email = "Email is invalid";
-          }
-        if(!form.password) tempErrors.password = "Password is required"
-        if(!form.confirmPassword) tempErrors.confirmPassword = "Confirm password is required"
-        if(!form.phone) tempErrors.phone = "Phone is required"
-        
+        }
+        if (!form.password) tempErrors.password = "Password is required"
+        if (!form.confirmPassword) tempErrors.confirmPassword = "Confirm password is required"
+        // if (!form.phone) tempErrors.phone = "Phone is required"
+
         setErrors(tempErrors)
         return Object.keys(tempErrors).length === 0
 
@@ -45,30 +45,30 @@ export const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if(validate()){
-            try{
-                await createUserWithEmailAndPassword(auth , form.email , form.password)
+        if (validate()) {
+            try {
+                await createUserWithEmailAndPassword(auth, form.email, form.password)
                 navigate("/home")
             } catch (err) {
-                console.error("sing with email and password is not working" , err)
+                console.error("sing with email and password is not working", err)
             }
-            console.log("register" , form)
+            console.log("register", form)
         }
     }
 
     const SingWithGoogle = async () => {
         try {
-            await signInWithPopup(auth , googleProvider)
+            await signInWithPopup(auth, googleProvider)
             navigate("/home")
         } catch (err) {
-            console.error("sing with google not working ",err)
+            console.error("sing with google not working ", err)
         }
     }
 
     const handleChange = (e) => {
         setForm({
-            ...form ,
-            [e.target.name] : e.target.value
+            ...form,
+            [e.target.name]: e.target.value
         })
     }
 
@@ -78,7 +78,7 @@ export const Register = () => {
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
-        if(file) {
+        if (file) {
             const reader = new FileReader();
             reader.onload = () => {
                 setAvatarSrc(reader.result);
@@ -93,38 +93,38 @@ export const Register = () => {
         <>
             <div className='w-full flex  bg-blue-50'>
                 {/* Image Login */}
-        <div className=' w-0 lg:w-1/2 '>
-        <div className='lg:flex w-1/2 justify-center hidden items-center bg-primary rounded-r-[60px] fixed h-screen px-4'>
-                    <div className='h-24 bg-white py-12 px-8 2xl:py-20 2xl:px-8 rounded-br-[25px] rounded-tr-[25px]  rounded-tl-[25px] 2xl:rounded-br-[50px] 2xl:rounded-tr-[50px]  2xl:rounded-tl-[50px]  '>
-                        <div className='flex justify-center items-center h-1/2'>
-                            <div className='bg-primary p-6 2xl:p-12 rounded-br-[12px] rounded-tr-[12px] rounded-tl-[12px] 2xl:rounded-br-[25px] 2xl:rounded-tr-[25px] 2xl:rounded-tl-[25px] '>
+                <div className=' w-0 lg:w-1/2 '>
+                    <div className='lg:flex w-1/2 justify-center hidden items-center bg-primary rounded-r-[60px] fixed h-screen px-4'>
+                        <div className='h-24 bg-white py-12 px-8 2xl:py-20 2xl:px-8 rounded-br-[25px] rounded-tr-[25px]  rounded-tl-[25px] 2xl:rounded-br-[50px] 2xl:rounded-tr-[50px]  2xl:rounded-tl-[50px]  '>
+                            <div className='flex justify-center items-center h-1/2'>
+                                <div className='bg-primary p-6 2xl:p-12 rounded-br-[12px] rounded-tr-[12px] rounded-tl-[12px] 2xl:rounded-br-[25px] 2xl:rounded-tr-[25px] 2xl:rounded-tl-[25px] '>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    {/* <div className='flex px-4  text-white'>
+                        {/* <div className='flex px-4  text-white'>
                         <h1 className='text-[65px] 2xl:text-[135px] pb-4 font-bold'>o Chat</h1>
                     </div> */}
-                    {/* <img className='rounded-[60px]' src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif" alt="Login Illustration" /> */}
+                        {/* <img className='rounded-[60px]' src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif" alt="Login Illustration" /> */}
+                    </div>
                 </div>
-        </div>
                 {/* Login Form */}
                 <div className="min-h-screen lg:w-1/2  w-full flex items-center justify-center p-4">
                     <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-2xl">
                         <div className="flex relative justify-center ">
-                        <UserRoundPen className='absolute top-1/2 transform -translate-y-1/2  text-primary '  />
-                        <Avatar 
-                            src={avatarSrc} 
-                            onClick={handleClickAvatar}
-                            className='cursor-pointer hover:opacity-10 border-primary border' 
-                            alt="avatar" 
-                            size="xxl" />
-                        <input 
-                            ref={fileInputRef}
-                            type="file"
-                            style={{ display: "none" }}
-                            accept='image/*'
-                            onChange={handleImageChange}
-                        />
+                            <UserRoundPen className='absolute top-1/2 transform -translate-y-1/2  text-primary ' />
+                            <Avatar
+                                src={avatarSrc}
+                                onClick={handleClickAvatar}
+                                className='cursor-pointer hover:opacity-10 border-primary border'
+                                alt="avatar"
+                                size="xxl" />
+                            <input
+                                ref={fileInputRef}
+                                type="file"
+                                style={{ display: "none" }}
+                                accept='image/*'
+                                onChange={handleImageChange}
+                            />
                         </div>
                         <form className="mt-8 space-y-6" onSubmit={handleSubmit} >
                             <div className="rounded-md shadow-sm space-y-4">
@@ -143,7 +143,7 @@ export const Register = () => {
                                                 placeholder="First Name"
                                             />
                                             {errors.firstName && <p className='text-red-600 text-xs pt-1'>{errors.firstName}</p>}
-                                            
+
                                         </div>
                                     </div>
                                     <div>
@@ -156,7 +156,7 @@ export const Register = () => {
                                                 name="lastName"
                                                 type="TEXT"
                                                 onChange={handleChange}
-                                                
+
                                                 className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none  focus:border-primary focus:z-10 sm:text-sm"
                                                 placeholder="Last Name"
                                             />
@@ -174,7 +174,7 @@ export const Register = () => {
                                             name="email"
                                             type="email"
                                             onChange={handleChange}
-                                            
+
                                             className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none  focus:border-primary focus:z-10 sm:text-sm"
                                             placeholder="Email address"
                                         />
@@ -192,7 +192,7 @@ export const Register = () => {
                                             name="password"
                                             type="password"
                                             onChange={handleChange}
-                                            
+
                                             className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none  focus:border-primary focus:z-10 sm:text-sm"
                                             placeholder="Password"
                                         />
@@ -210,7 +210,7 @@ export const Register = () => {
                                             name="confirmPassword"
                                             type="password"
                                             onChange={handleChange}
-                                            
+
                                             className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none  focus:border-primary focus:z-10 sm:text-sm"
                                             placeholder="Confirm password"
                                         />
@@ -218,7 +218,7 @@ export const Register = () => {
                                         {errors.confirmPassword && <p className='text-red-600 text-xs pt-1'>{errors.confirmPassword}</p>}
                                     </div>
                                 </div>
-                                <div>
+                                {/* <div>
                                         <PhoneInput
                                             onchange={handleChange}
                                             placeholder="Enter phone number"
@@ -233,7 +233,7 @@ export const Register = () => {
                                             inputClass=" placeholder:text-blue-gray-300 focus:!border-primary !w-full" // Adjust input styles
                                         />
                                          {errors.phone && <p className='text-red-600 text-xs pt-1'>{errors.phone}</p>}
-                                </div>
+                                </div> */}
                             </div>
 
                             <div>

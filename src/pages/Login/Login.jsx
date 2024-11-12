@@ -1,42 +1,52 @@
-import { FacebookIcon, GithubIcon, LockIcon, MailIcon } from 'lucide-react';
+import { LockIcon, MailIcon } from 'lucide-react';
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa6";
 import { auth, googleProvider } from '../../config/firebase';
+import { signInWithEmailAndPassword } from "firebase/auth"
 export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
 
+    const handleLogin = (email, password) => {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user
+                console.log("Logged in as:", user);
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.error("Error logging in:", errorCode, errorMessage);
+            })
+    }
+
     const handleSubmit = async (e) => {
-        // e.preventDefault();
-        try {
-            await createUserWithEmailAndPassword(auth, email, password)
-            navigate('/')
-        } catch (error) {
-            console.error(error)
-        }
+        e.preventDefault();
+        handleLogin(email , password)
+        navigate('/home')
+        
 
     };
 
-    const singInWithGoogle = async () => {
-        try {
-            await signInWithPopup(auth, googleProvider)
-        } catch (error) {
-            console.error(error)
-        }
-    }
+    // const singInWithGoogle = async () => {
+    //     try {
+    //         await signInWithPopup(auth, googleProvider)
+    //     } catch (error) {
+    //         console.error(error)
+    //     }
+    // }
 
-    const handleLogOut = async () => {
-        try {
-            await signOut(auth)
-        } catch (err) {
-            console.error(err)
-        }
-    }
+    // const handleLogOut = async () => {
+    //     try {
+    //         await signOut(auth)
+    //     } catch (err) {
+    //         console.error(err)
+    //     }
+    // }
 
     return (
         <div className='w-full flex flex-row bg-blue-50'>
