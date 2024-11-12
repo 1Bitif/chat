@@ -9,7 +9,24 @@ export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const [checKAuth , setCheckAuth] = useState("")
+    const [checkLogin , setCheckLogin] = useState(false)
+    const [errors ,setErrors] = useState({}) 
 
+
+    
+    
+    const validate = () => {
+        let tempErrors = {}
+        if(!email.trim()) {
+            tempErrors.email = "Email is required"
+        } else if (!/\S+@\S+\.\S+/.test(email)){
+            tempErrors.email = "Email is invalid";
+        }   
+        if(!password) tempErrors.password = "Password is required"
+        setErrors(tempErrors)
+        return Object.keys(tempErrors).length === 0
+        }
 
     const handleLogin = (email, password) => {
         signInWithEmailAndPassword(auth, email, password)
@@ -21,13 +38,27 @@ export const Login = () => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.error("Error logging in:", errorCode, errorMessage);
+                if (errorCode === "auth/user-not-found") {
+                    setCheckAuth("This email address is not registered.");
+                    setCheckLogin(true)
+                  } else if (errorCode === "auth/wrong-password") {
+                    setCheckAuth("Incorrect password. Please try again.");
+                    setCheckLogin(true)
+                  } else {
+                    setCheckAuth("Login failed. Please check your details and try again.");
+                    setCheckLogin(true)
+                  }
             })
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        handleLogin(email , password)
-        navigate('/home')
+        if(validate()) {
+            handleLogin(email , password)
+            !checkLogin ? navigate('/home') : navigate("/")
+        } else {
+            alert(checKAuth)
+        }
         
 
     };
@@ -71,7 +102,7 @@ export const Login = () => {
                         <p className="mt-2 text-sm text-gray-600">Please sign in to your account</p>
                     </div>
                     <form className="mt-8 space-y-6" onSubmit={handleSubmit} >
-                        <div className="rounded-md shadow-sm space-y-4">
+                        <div className="rounded-md  space-y-4">
                             <div>
                                 <label htmlFor="email-address" className="sr-only">
                                     Email address
@@ -81,14 +112,13 @@ export const Login = () => {
                                         id="email-address"
                                         name="email"
                                         type="email"
-                                        autoComplete="email"
                                         onChange={(e) => setEmail(e.target.value)}
-                                        required
                                         className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
                                         placeholder="Email address"
                                     />
                                     <MailIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                                 </div>
+                                    {errors.email && <p className='text-red-600 text-xs pt-1'>{errors.email}</p>}
                             </div>
                             <div>
                                 <label htmlFor="password" className="sr-only">
@@ -100,13 +130,12 @@ export const Login = () => {
                                         name="password"
                                         type="password"
                                         onChange={(e) => setPassword(e.target.value)}
-                                        autoComplete="current-password"
-                                        required
                                         className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
                                         placeholder="Password"
                                     />
                                     <LockIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                                 </div>
+                                    {errors.password && <p className='text-red-600 text-xs pt-1'>{errors.password}</p>}
                             </div>
                         </div>
 
