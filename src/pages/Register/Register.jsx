@@ -8,7 +8,11 @@ import "react-phone-input-2/lib/style.css";
 import { Avatar } from '@material-tailwind/react'
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth"
 import { auth, googleProvider } from '../../config/firebase'
-
+import imageLogo1 from "../../../public/asset/images/DoChat2.png"
+import imageiconLogo1 from "../../../public/asset/images/Vector1.png"
+import imageLogo2 from "../../../public/asset/images/DoChat.png"
+import imageiconLogo2 from "../../../public/asset/images/Vector.png"
+import { TitleIcon } from '../../icons/Icons'
 export const Register = () => {
     const navigate = useNavigate();
     const [avatarSrc, setAvatarSrc] = useState("https://avatar.iran.liara.run/public/15");
@@ -94,46 +98,18 @@ export const Register = () => {
             <div className='w-full flex  bg-blue-50'>
                 {/* Image Login */}
                 <div className=' w-0 lg:w-1/2 '>
-                    <div className='lg:flex w-1/2 justify-center hidden items-center bg-primary rounded-r-[60px] fixed h-screen px-4'>
-                        <div className='h-24 bg-white py-12 px-8 2xl:py-20 2xl:px-8 rounded-br-[25px] rounded-tr-[25px]  rounded-tl-[25px] 2xl:rounded-br-[50px] 2xl:rounded-tr-[50px]  2xl:rounded-tl-[50px]  '>
-                            <div className='flex justify-center items-center h-1/2'>
-                                <div className='bg-primary p-6 2xl:p-12 rounded-br-[12px] rounded-tr-[12px] rounded-tl-[12px] 2xl:rounded-br-[25px] 2xl:rounded-tr-[25px] 2xl:rounded-tl-[25px] '>
-                                </div>
-                            </div>
-                        </div>
-                        {/* <div className='flex px-4  text-white'>
-                        <h1 className='text-[65px] 2xl:text-[135px] pb-4 font-bold'>o Chat</h1>
-                    </div> */}
-                        {/* <img className='rounded-[60px]' src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif" alt="Login Illustration" /> */}
+                    <div className='lg:flex w-1/2 justify-center hidden items-center gap-4 bg-primary fixed h-screen '>
+                        <TitleIcon height={"300" } width={"500"} color={"#ffffff"} />
                     </div>
                 </div>
                 {/* Login Form */}
                 <div className="min-h-screen lg:w-1/2  w-full flex items-center justify-center p-4">
                     <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-2xl">
-                        <div className='w-full flex justify-center'>
-                        <div className='h-12 w-1/5 bg-primary py-6 px-4 2xl:py-10 2xl:px-4 rounded-br-[13px] rounded-tr-[13px]  rounded-tl-[13px] 2xl:rounded-br-[25px] 2xl:rounded-tr-[25px]  2xl:rounded-tl-[25px]  '>
-                            <div className='flex justify-center items-center h-1/2'>
-                                <div className='bg-white p-3 2xl:p-6 rounded-br-[6px] rounded-tr-[6px] rounded-tl-[6px] 2xl:rounded-br-[13px] 2xl:rounded-tr-[13px] 2xl:rounded-tl-[13px] '>
-                                </div>
-                            </div>
+                        <div className=' flex gap-4 justify-center'>
+
+                            <TitleIcon />
                         </div>
-                        </div>
-                        {/* <div className="flex relative justify-center ">
-                            <UserRoundPen className='absolute top-1/2 transform -translate-y-1/2  text-primary ' />
-                            <Avatar
-                                src={avatarSrc}
-                                onClick={handleClickAvatar}
-                                className='cursor-pointer hover:opacity-10 border-primary border'
-                                alt="avatar"
-                                size="xxl" />
-                            <input
-                                ref={fileInputRef}
-                                type="file"
-                                style={{ display: "none" }}
-                                accept='image/*'
-                                onChange={handleImageChange}
-                            />
-                        </div> */}
+
                         <form className="mt-8 space-y-6" onSubmit={handleSubmit} >
                             <div className="rounded-md shadow-sm space-y-4">
                                 <div className='flex flex-row space-x-2'>

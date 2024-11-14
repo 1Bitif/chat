@@ -5,6 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa6";
 import { auth, googleProvider } from '../../config/firebase';
 import { signInWithEmailAndPassword } from "firebase/auth"
+import { TitleIcon } from '../../icons/Icons';
 export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -83,12 +84,7 @@ export const Login = () => {
         <div className='w-full flex flex-row sm:fixed sm:overflow-y-hidden bg-blue-50'>
             {/* Image Login */}
             <div className='lg:flex justify-center hidden items-center bg-primary rounded-r-[60px] w-1/2 h-screen'>
-                <div className='h-24 bg-white py-12 px-8 2xl:py-24 2xl:px-16 rounded-br-[25px] rounded-tr-[25px]  rounded-tl-[25px] 2xl:rounded-br-[50px] 2xl:rounded-tr-[50px]  2xl:rounded-tl-[50px]  '>
-                    <div className='flex justify-center items-center h-1/2'>
-                        <div className='bg-primary p-6 2xl:p-12 rounded-br-[12px] rounded-tr-[12px] rounded-tl-[12px] 2xl:rounded-br-[25px] 2xl:rounded-tr-[25px] 2xl:rounded-tl-[25px] '>
-                        </div>
-                    </div>
-                </div>
+                <TitleIcon height={"300" } width={"500"} color={"#ffffff"} />
                 {/* <div className='flex px-4  text-white'>
                     <h1 className='text-[65px] 2xl:text-[135px] pb-4'>Do Chat</h1>
                 </div> */}
@@ -97,9 +93,12 @@ export const Login = () => {
             {/* Login Form */}
             <div className=" lg:w-1/2  h-screen  w-full flex items-center justify-center p-4">
                 <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-2xl">
-                    <div className="text-center">
-                        <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Welcome back</h2>
-                        <p className="mt-2 text-sm text-gray-600">Please sign in to your account</p>
+                    <div className="gap-4 flex flex-col justify-center items-center w-full ">
+                        <TitleIcon   />
+                        <div className='gap-2 flex flex-col justify-start w-full'>
+                        <h2 className="text-3xl  font-extrabold text-gray-900">Welcome</h2>
+                        <p className="text-sm text-gray-600">Please sign in to your account</p>
+                        </div>
                     </div>
                     <form className="mt-8 space-y-6" onSubmit={handleSubmit} >
                         <div className="rounded-md  space-y-4">
