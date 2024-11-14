@@ -80,7 +80,7 @@ export const Login = () => {
     // }
 
     return (
-        <div className='w-full flex flex-row bg-blue-50'>
+        <div className='w-full flex flex-row sm:fixed sm:overflow-y-hidden bg-blue-50'>
             {/* Image Login */}
             <div className='lg:flex justify-center hidden items-center bg-primary rounded-r-[60px] w-1/2 h-screen'>
                 <div className='h-24 bg-white py-12 px-8 2xl:py-24 2xl:px-16 rounded-br-[25px] rounded-tr-[25px]  rounded-tl-[25px] 2xl:rounded-br-[50px] 2xl:rounded-tr-[50px]  2xl:rounded-tl-[50px]  '>
@@ -95,7 +95,7 @@ export const Login = () => {
                 {/* <img className='rounded-[60px]' src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif" alt="Login Illustration" /> */}
             </div>
             {/* Login Form */}
-            <div className="min-h-screen lg:w-1/2  w-full flex items-center justify-center p-4">
+            <div className=" lg:w-1/2  h-screen  w-full flex items-center justify-center p-4">
                 <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-2xl">
                     <div className="text-center">
                         <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Welcome back</h2>
@@ -145,7 +145,7 @@ export const Login = () => {
                                     id="remember-me"
                                     name="remember-me"
                                     type="checkbox"
-                                    className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                                    className="h-4 w-4 accent-primary"
                                 />
                                 <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
                                     Remember me

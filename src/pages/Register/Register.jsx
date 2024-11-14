@@ -110,7 +110,15 @@ export const Register = () => {
                 {/* Login Form */}
                 <div className="min-h-screen lg:w-1/2  w-full flex items-center justify-center p-4">
                     <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-2xl">
-                        <div className="flex relative justify-center ">
+                        <div className='w-full flex justify-center'>
+                        <div className='h-12 w-1/5 bg-primary py-6 px-4 2xl:py-10 2xl:px-4 rounded-br-[13px] rounded-tr-[13px]  rounded-tl-[13px] 2xl:rounded-br-[25px] 2xl:rounded-tr-[25px]  2xl:rounded-tl-[25px]  '>
+                            <div className='flex justify-center items-center h-1/2'>
+                                <div className='bg-white p-3 2xl:p-6 rounded-br-[6px] rounded-tr-[6px] rounded-tl-[6px] 2xl:rounded-br-[13px] 2xl:rounded-tr-[13px] 2xl:rounded-tl-[13px] '>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        {/* <div className="flex relative justify-center ">
                             <UserRoundPen className='absolute top-1/2 transform -translate-y-1/2  text-primary ' />
                             <Avatar
                                 src={avatarSrc}
@@ -125,7 +133,7 @@ export const Register = () => {
                                 accept='image/*'
                                 onChange={handleImageChange}
                             />
-                        </div>
+                        </div> */}
                         <form className="mt-8 space-y-6" onSubmit={handleSubmit} >
                             <div className="rounded-md shadow-sm space-y-4">
                                 <div className='flex flex-row space-x-2'>
