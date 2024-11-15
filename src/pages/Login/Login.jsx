@@ -81,14 +81,10 @@ export const Login = () => {
     // }
 
     return (
-        <div className='w-full flex flex-row sm:fixed sm:overflow-y-hidden bg-blue-50'>
+        <div className='w-full flex flex-row sm:fixed sm:overflow-y-hidden bg-gray-100'>
             {/* Image Login */}
             <div className='lg:flex justify-center hidden items-center bg-primary rounded-r-[60px] w-1/2 h-screen'>
                 <TitleIcon height={"300" } width={"500"} color={"#ffffff"} />
-                {/* <div className='flex px-4  text-white'>
-                    <h1 className='text-[65px] 2xl:text-[135px] pb-4'>Do Chat</h1>
-                </div> */}
-                {/* <img className='rounded-[60px]' src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif" alt="Login Illustration" /> */}
             </div>
             {/* Login Form */}
             <div className=" lg:w-1/2  h-screen  w-full flex items-center justify-center p-4">

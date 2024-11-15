@@ -95,10 +95,10 @@ export const Register = () => {
     const [country, setCountry] = useState("ma");
     return (
         <>
-            <div className='w-full flex  bg-blue-50'>
+            <div className='w-full flex bg-gray-100'>
                 {/* Image Login */}
                 <div className=' w-0 lg:w-1/2 '>
-                    <div className='lg:flex w-1/2 justify-center hidden items-center gap-4 bg-primary fixed h-screen '>
+                    <div className='lg:flex w-1/2 justify-center hidden items-center gap-4 bg-primary  rounded-r-[60px]  fixed h-screen '>
                         <TitleIcon height={"300" } width={"500"} color={"#ffffff"} />
                     </div>
                 </div>
@@ -111,7 +111,7 @@ export const Register = () => {
                         </div>
 
                         <form className="mt-8 space-y-6" onSubmit={handleSubmit} >
-                            <div className="rounded-md shadow-sm space-y-4">
+                            <div className="rounded-md space-y-4">
                                 <div className='flex flex-row space-x-2'>
                                     <div>
                                         <label htmlFor="firstName" className="sr-only">
@@ -126,9 +126,9 @@ export const Register = () => {
                                                 className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none  focus:border-primary focus:z-10 sm:text-sm"
                                                 placeholder="First Name"
                                             />
-                                            {errors.firstName && <p className='text-red-600 text-xs pt-1'>{errors.firstName}</p>}
 
                                         </div>
+                                            {errors.firstName && <p className='text-red-600 text-xs pt-1'>{errors.firstName}</p>}
                                     </div>
                                     <div>
                                         <label htmlFor="lastName" className="sr-only">
@@ -144,8 +144,8 @@ export const Register = () => {
                                                 className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none  focus:border-primary focus:z-10 sm:text-sm"
                                                 placeholder="Last Name"
                                             />
-                                            {errors.lastName && <p className='text-red-600 text-xs pt-1'>{errors.lastName}</p>}
                                         </div>
+                                            {errors.lastName && <p className='text-red-600 text-xs pt-1'>{errors.lastName}</p>}
                                     </div>
                                 </div>
                                 <div>
@@ -163,8 +163,8 @@ export const Register = () => {
                                             placeholder="Email address"
                                         />
                                         <MailIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                                        {errors.email && <p className='text-red-600 text-xs pt-1'>{errors.email}</p>}
                                     </div>
+                                        {errors.email && <p className='text-red-600 text-xs pt-1'>{errors.email}</p>}
                                 </div>
                                 <div>
                                     <label htmlFor="password" className="sr-only">
@@ -181,8 +181,8 @@ export const Register = () => {
                                             placeholder="Password"
                                         />
                                         <LockIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                                        {errors.password && <p className='text-red-600 text-xs pt-1'>{errors.password}</p>}
                                     </div>
+                                        {errors.password && <p className='text-red-600 text-xs pt-1'>{errors.password}</p>}
                                 </div>
                                 <div>
                                     <label htmlFor="password" className="sr-only">
@@ -199,8 +199,8 @@ export const Register = () => {
                                             placeholder="Confirm password"
                                         />
                                         <LockIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                                        {errors.confirmPassword && <p className='text-red-600 text-xs pt-1'>{errors.confirmPassword}</p>}
                                     </div>
+                                        {errors.confirmPassword && <p className='text-red-600 text-xs pt-1'>{errors.confirmPassword}</p>}
                                 </div>
                                 {/* <div>
                                         <PhoneInput
