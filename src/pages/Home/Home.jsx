@@ -7,8 +7,8 @@ export const Home = () => {
   return (
     <>
       <div className='flex justify-center items-center h-screen bg-blue-50'>
-        <div className=' flex border border-white shadow-xl bg-white overflow-hidden w-[60%] h-[80%] rounded-xl'>
-          <div className='w-1/3 bg-primary'>
+        <div className=' flex  shadow-xl bg-white overflow-hidden w-[60%] h-[80%] rounded-xl'>
+          <div className='w-1/3 border-r'>
             <Sidebar />
           </div>
           <div className='w-2/3'>
