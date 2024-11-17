@@ -8,7 +8,9 @@ export const Sidebar = () => {
     <div className='bg-white'>
       <Navbar />
       <Search />
+      <div className='flex flex-col'>
       <Chats />
+      </div>
     </div>
   )
 }

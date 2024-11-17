@@ -2,17 +2,40 @@ import React from 'react'
 
 export const Chats = () => {
   return (
-    <div className='w-full flex flex-row justify-start gap-4 px-4 py-6 items-start hover:bg-gray-100  cursor-pointer '>
-        <div className='flex flow-row justify-center items-center gap-2 '>
-          <img 
-            src="https://avatar.iran.liara.run/public/40" 
-            alt="" 
-            className='w-12 h-12 rounded-full' 
-          />
-        <div>
+    <>
+      <div className='flex flow-row  items-center gap-3  hover:bg-gray-100  cursor-pointer w-full  p-4'>
+        <img
+          src="https://avatar.iran.liara.run/public/40"
+          alt=""
+          className='w-12 h-12 rounded-full'
+        />
+        <div className='flex flex-col items-start '>
           <h1 className='font-semibold'>Abdellatif Aajli</h1>
+          <p className='text-gray-400'>Hello</p>
         </div>
+      </div>
+      <div className='flex flow-row  items-center gap-3  hover:bg-gray-100  cursor-pointer w-full  p-4'>
+        <img
+          src="https://avatar.iran.liara.run/public/40"
+          alt=""
+          className='w-12 h-12 rounded-full'
+        />
+        <div className='flex flex-col items-start '>
+          <h1 className='font-semibold'>Abdellatif Aajli</h1>
+          <p className='text-gray-400'>Hello</p>
         </div>
-    </div>
+      </div>
+      <div className='flex flow-row  items-center gap-3  hover:bg-gray-100  cursor-pointer w-full  p-4'>
+        <img
+          src="https://avatar.iran.liara.run/public/40"
+          alt=""
+          className='w-12 h-12 rounded-full'
+        />
+        <div className='flex flex-col items-start '>
+          <h1 className='font-semibold'>Abdellatif Aajli</h1>
+          <p className='text-gray-400'>Hello</p>
+        </div>
+      </div>
+    </>
   )
 }
