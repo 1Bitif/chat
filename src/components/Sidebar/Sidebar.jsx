@@ -5,7 +5,7 @@ import { Chats } from '../Chats/Chats'
 export const Sidebar = ({sideBar}) => {
 
   return (
-    <div className='bg-white '>
+    <div className='bg-white w-full'>
       <Navbar />
       <Search />
       <div className='flex flex-col'>
