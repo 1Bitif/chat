@@ -11,7 +11,7 @@ export const Navbar = () => {
             </div>
             <div className='flex gap-4 items-center justify-center'>
                 <div>
-                    <img src="https://avatar.iran.liara.run/public/40" className='w-10 h-10 rounded-full' alt="" />
+                    <img src="https://avatar.iran.liara.run/public/40" className='w-10 h-10 rounded-full' alt="Image" />
                 </div>
                 <div>
                     <h1>Abdellatif Aajli</h1>
