@@ -1,9 +1,13 @@
 import React from 'react'
 
-export const Chats = () => {
+export const Chats = ({setOpen}) => {
+
+  const handleClick = () => {
+    setOpen(true)
+  }
   return (
     <>
-      <div className='flex flow-row  items-center gap-3  hover:bg-gray-100  cursor-pointer w-full  p-4'>
+      <div onClick={handleClick} className='flex flow-row  items-center gap-3  hover:bg-gray-100  cursor-pointer w-full  p-4'>
         <img
           src="https://avatar.iran.liara.run/public/40"
           alt=""
