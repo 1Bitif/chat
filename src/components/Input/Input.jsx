@@ -14,7 +14,7 @@ export const Input = () => {
         <button>
           <ImagePlus />
         </button>
-        <button className='bg-primary text-white p-2  rounded-full hover:bg-transparent transition duration-300 ease-in-out hover:text-primary'>
+        <button className='bg-primary text-white p-2  rounded-full '>
         <SendHorizontal />
         </button>
       </div>
