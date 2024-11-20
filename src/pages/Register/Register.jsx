@@ -39,6 +39,7 @@ export const Register = () => {
         }
         if (!form.password) tempErrors.password = "Password is required"
         if (!form.confirmPassword) tempErrors.confirmPassword = "Confirm password is required"
+        if (form.password !== form.confirmPassword) tempErrors.confirmPassword = "Passwords do not match"
         // if (!form.phone) tempErrors.phone = "Phone is required"
 
         setErrors(tempErrors)
@@ -51,12 +52,13 @@ export const Register = () => {
         e.preventDefault();
         if (validate()) {
             try {
-                await createUserWithEmailAndPassword(auth, form.email, form.password)
-                navigate("/home")
+                const data =  await createUserWithEmailAndPassword(auth, form.email, form.password)
+                // navigate("/home")
+                console.log({data : data})
             } catch (err) {
                 console.error("sing with email and password is not working", err)
             }
-            console.log("register", form)
+            // console.log("register", form)
         }
     }
 
