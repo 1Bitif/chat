@@ -15,8 +15,6 @@ import imageiconLogo2 from "../../../public/asset/images/Vector.png"
 import { TitleIcon } from '../../icons/Icons'
 export const Register = () => {
     const navigate = useNavigate();
-    const [avatarSrc, setAvatarSrc] = useState("https://avatar.iran.liara.run/public/15");
-    const fileInputRef = useRef(null)
 
     const [form, setForm] = useState({
         firstName: "",
@@ -78,9 +76,6 @@ export const Register = () => {
         })
     }
 
-    const handleClickAvatar = () => {
-        fileInputRef.current.click();
-    }
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
