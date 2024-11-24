@@ -13,6 +13,7 @@ import imageiconLogo1 from "../../../public/asset/images/Vector1.png"
 import imageLogo2 from "../../../public/asset/images/DoChat.png"
 import imageiconLogo2 from "../../../public/asset/images/Vector.png"
 import { TitleIcon } from '../../icons/Icons'
+import { toast } from 'react-toastify'
 export const Register = () => {
     const navigate = useNavigate();
 
@@ -45,6 +46,7 @@ export const Register = () => {
 
     }
 
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -53,8 +55,14 @@ export const Register = () => {
                 const data =  await createUserWithEmailAndPassword(auth, form.email, form.password)
                 // navigate("/home")
                 console.log({data : data})
+                toast.success("Your Account has been created !", {
+                    position:"top-right",
+                  });
             } catch (err) {
                 console.error("sing with email and password is not working", err)
+                toast.error("Register failed !", {
+                    position: "top-right",
+                  });
             }
             // console.log("register", form)
         }
